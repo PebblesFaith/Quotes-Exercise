@@ -11,15 +11,15 @@ quotesApp.listen(port, function() {
     console.log('Server to Create Table is listening onto URL at http://localhost: ' + port + '.');
 });
 
-quotesApp.get('/quotes/:firstnameId', function(request, response) {
+quotesApp.get('/quotes/:lastnameId', function(request, response) {
     // Matches the ':nameId' adove in order to link the sub root directory to the 'FirstName' column.
-    const firstnameToLookUp = request.params.firstnameId;
+    const lastnameToLookUp = request.params.lastnameId;
     // SQL Query
     db.all (
-        'SELECT * FROM Quotism WHERE FirstName = $FirstName',
+        'SELECT * FROM Quotism WHERE LastName = $LastName',
         // Parameters to pass into SQL Query.
         {
-        $FirstName: firstnameToLookUp
+        $LastName: lastnameToLookUp
         },
         // Callback function to run when Query finishes.
         function (err, rows) {
