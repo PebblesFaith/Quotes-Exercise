@@ -150,6 +150,23 @@
     background-color: azure;
 }
 
+#allQuoterButton {
+    margin-left: 5px;
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    cursor: 15px;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(107, 107, 107);    
+}
+
+#allQuoterButton:hover {
+    background-color: azure;
+}
+
 .flex-container3 {
     display: flex;
     flex-wrap: wrap;
