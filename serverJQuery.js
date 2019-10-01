@@ -17,8 +17,8 @@ quotesApp.listen(port, function() {
 
 
     
-quotesApp.get('/users/:lastnameId', function(request, response) {
-    // Matches ':userId' above.
+quotesApp.get('/quotes/:lastnameId', function(request, response) {
+    // Matches ':lastnameId' above.
     const lastnameToLookUp = request.params.lastnameId;
     // SQL Query
     db.all(
@@ -45,7 +45,7 @@ quotesApp.get('/users/:lastnameId', function(request, response) {
 });
 
 
-quotesApp.get('/users', function(request, response) {
+quotesApp.get('/quotes', function(request, response) {
     db.all('SELECT LastName FROM Quotism', function (err, rows) {
 
         console.log(rows);
@@ -56,30 +56,29 @@ quotesApp.get('/users', function(request, response) {
     });    
 });
 
-
 // POST request is for posting new data to the server.
 const bodyParser = require('body-parser');
 // Connect to my web application.
 quotesApp.use(bodyParser.urlencoded({extended: true}));
-quotesApp.post('/users', function(request, response) {
+quotesApp.post('/quotes', function(request, response) {
     console.log(request.body);
     //response.send({});
 
     db.run(
-        'INSERT INTO Quotism VALUES ($Quote, $FirstName, $LastName, $YearPublished, $AuthorPicture)',
+        'INSERT INTO Quotism (Quote, FirstName, LastName, YearPublished, AuthorPicture) VALUES ($Quote, $FirstName, $LastName, $YearPublished, $AuthorPicture)',
         {
             $Quote: request.body.Quote,
             $FirstName: request.body.FirstName,
             $LastName: request.body.LastName,
-            $YearPublished: request.body.YearPublished,            
-            $AuthorPicture: request.body.AuthorPicture    
+            $YearPublished: request.body.YearPublished,
+            $AuthorPicture: request.body.AuthorPicture
         },
-        (err)  => {
+        function(err) {
             if (err) {
-                response.send({message: 'error in app.post(/users)'});                
+                response.send({message: 'error in quotesApp.post(/quotes)'});                
             }
             else {
-                response.send({message: 'successfully run app.post(/users)'});
+                response.send({message: 'successfully run quotesApp.post(/quotes)'});
             }
 
         }
@@ -87,8 +86,6 @@ quotesApp.post('/users', function(request, response) {
     );
 
 });
-
-
 
 
 
