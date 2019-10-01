@@ -13,7 +13,7 @@ quotesApp.listen(port, function() {
 
 db.serialize (function() {
    
-    db.run('INSERT INTO Quotism (Quote, FirstName, LastName, YearPublished, AuthorPicture) VALUES ("It is the mark of an educated mind to be able to entertain a thought without accepting it", "Aristotle", "", "351 BC" , "Aristotle.jpg")');
+    db.run('INSERT INTO Quotism (Quote, FirstName, LastName, YearPublished, AuthorPicture) VALUES ("A person may cause evil to others not only by his action but by his inactions, and in either case, he or she is justly accountable.", "John Stuart", "Mill", "1852" , "Mil.jpg")');
 
     console.log('Ms. Ajai has successfully created the "Quotism" table in "Quotes.db" database.');
 
