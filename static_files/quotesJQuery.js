@@ -2,7 +2,7 @@ $(document).ready(function() {
     console.log('Testing Server Browser in order to script JQuery AJAX.');
 
     $('#quoterProfileButton').click(function() {
-        const requestURL = 'users/' + $('#lastNameTextbox').val();
+        const requestURL = 'quotes/' + $('#lastNameTextbox1').val();
         console.log('You are making an AJAX request to: ', requestURL);
 
         $.ajax({
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     $('#allquotersProfileButton').click(function() {
         $.ajax({
-            url: 'users/',
+            url: 'quotes/',
             type: 'GET',
             dataType: 'json',
             success: function(data) {
@@ -45,13 +45,14 @@ $(document).ready(function() {
 
     $('#quoterInsertProfileButton').click(function() {
         console.log('Selected insert button had been clicked!');
+        console.log('Insert a new quote!');
         $.ajax({
-            url: 'users',
+            url: 'quotes',
             type: 'POST',
             data: {
                 Quote: $('#quoteTextarea').val(),
                 FirstName: $('#firstNameTextbox').val(),
-                LastName: $('#lastNameTextbox').val(),
+                LastName: $('#lastNameTextbox2').val(),
                 YearPublished: $('#yearPublishedTextbox').val(),
                 AuthorPicture: $('#authorPictureTextbox').val(),
             },
@@ -59,7 +60,14 @@ $(document).ready(function() {
                 $('#status2').html(data.message);
             }
         });
+
+
+    $(document).ajaxError(function() {
+        $('status2').html('Error: UNKNOWN AJAX ERROR!');
     });
+
+});
+
 
 
 
